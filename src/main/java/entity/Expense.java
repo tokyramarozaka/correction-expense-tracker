@@ -29,12 +29,5 @@ public class Expense {
         return amount > 100;
     }
 
-    @Override
-    public String toString() {
-        return "Expense{" +
-                "label='" + label + '\'' +
-                ", amount=" + amount +
-                ", date=" + date +
-                '}';
-    }
+
 }

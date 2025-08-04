@@ -18,16 +18,18 @@ class ExpenseDAOTest {
 
     @BeforeEach
     void setUp() {
-        RecurringExpense spotify = new RecurringExpense("Abonnement spotify",
+        var spotify = new RecurringExpense("Abonnement spotify",
                 60_000, LocalDate.now(), Recurrence.MONTHLY);
-        RefundableExpense doctorVisit = new RefundableExpense("Doctor visit", 100_000,
+        var rent = new RecurringExpense("Loyer", 300_000, LocalDate.now(), Recurrence.MONTHLY);
+        var doctorVisit = new RefundableExpense("Doctor visit", 100_000,
                 LocalDate.of(2025, 10, 10));
-        Expense ps5 = new Expense("PS5", 3_000_000,
+        var ps5 = new Expense("PS5", 3_000_000,
                 LocalDate.of(2025, 10, 10));
 
-        expenses = List.of(spotify, doctorVisit, ps5);
+        expenses = List.of(spotify, doctorVisit, ps5, rent);
         expenseDAO = new ExpenseDAO();
     }
+
     @Test
     void getUnrefundedExpenses() {
        var unrefundedExpenses = expenseDAO.getUnrefundedExpenses(expenses);
@@ -38,6 +40,8 @@ class ExpenseDAOTest {
 
     @Test
     void getSumOfRecurringExpenses() {
+        var sumOfRecurringExpenses = expenseDAO.getSumOfRecurringExpenses(expenses);
+        assertEquals(360_000, sumOfRecurringExpenses);
     }
 
     @Test
