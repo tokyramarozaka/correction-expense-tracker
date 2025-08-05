@@ -46,6 +46,20 @@ class ExpenseDAOTest {
 
     @Test
     void getLargeExpenses() {
+        var largeExpenses = expenseDAO.getLargeExpenses(expenses);
+        assertEquals(4, largeExpenses.size());
+        assertTrue(largeExpenses
+                .stream()
+                .anyMatch(e -> e.getLabel().equals("PS5")));
+        assertTrue(largeExpenses
+                .stream()
+                .anyMatch(e -> e.getLabel().equals("Doctor visit")));
+        assertTrue(largeExpenses
+                .stream()
+                .anyMatch(e -> e.getLabel().equals("Abonnement spotify")));
+        assertTrue(largeExpenses
+                .stream()
+                .anyMatch(e -> e.getLabel().equals("Loyer")));
     }
 
     @Test
