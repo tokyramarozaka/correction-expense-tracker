@@ -18,8 +18,7 @@ public class ExpenseDAO {
     public double getSumOfRecurringExpenses(List<Expense> expenses) {
         return expenses.stream()
                 .filter(e -> e instanceof RecurringExpense)
-                .map(e -> (RecurringExpense) e)
-                .mapToDouble(RecurringExpense::getAmount)
+                .mapToDouble(Expense::getAmount)
                 .sum();
     }
 

@@ -64,5 +64,7 @@ class ExpenseDAOTest {
 
     @Test
     void getTotalAmount() {
+        var totalAmount = expenseDAO.getTotalAmount(expenses);
+        assertEquals(3_460_000, totalAmount);
     }
 }
